@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon App SIG - Inscription</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html">Mon App SIG</a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="login.html">Connexion</a></li>
+                <li><a href="register.html">Inscription</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" onclick="openNav()">&#9776;</button>
+    </header>
+
+    <div class="sidebar" id="mySidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Accueil</a>
+        <a href="login.html">Connexion</a>
+        <a href="register.html">Inscription</a>
+    </div>
+
+    <div class="main-content">
+        <div class="page-container">
+            <h2>Créer un Compte</h2>
+            <form action="login.html" method="POST">
+                <div class="form-group">
+                    <label for="nom_user">Nom d'utilisateur:</label>
+                    <input type="text" id="nom_user" name="nom_user" required>
+                </div>
+                <div class="form-group">
+                    <label for="email_user">Email:</label>
+                    <input type="email" id="email_user" name="email_user" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirmer le mot de passe:</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required>
+                </div>
+                <div class="form-group">
+                    <label for="organisme">Organisation (optionnel):</label>
+                    <input type="text" id="organisme" name="organisme">
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Téléphone (optionnel):</label>
+                    <input type="text" id="telephone" name="telephone">
+                </div>
+                <button type="submit" class="btn-register">S'inscrire</button>
+            </form>
+            <p class="login-link">Déjà un compte ? <a href="login.html">Connectez-vous ici</a></p>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2023 Mon App SIG. Tous droits réservés.</p>
+        <p>almadhkourihaythem@gmail.com</p>
+    </footer>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeNav();
+            }
+        });
+    </script>
+</body>
+</html>
