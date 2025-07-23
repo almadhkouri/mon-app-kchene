@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon App SIG - Accueil</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html">Mon App SIG</a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="login.html">Connexion</a></li>
+                <li><a href="register.html">Inscription</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" onclick="openNav()">&#9776;</button>
+    </header>
+
+    <div class="sidebar" id="mySidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Accueil</a>
+        <a href="login.html">Connexion</a>
+        <a href="register.html">Inscription</a>
+    </div>
+
+    <div class="main-content">
+        <div class="page-container">
+            <h2>Bienvenue sur Mon Application SIG pour le Déperissement des Forêts en Tunisie</h2>
+
+            <p>Cette application web est dédiée à la surveillance et à l'analyse du déperissement des forêts en Tunisie. Elle permet aux utilisateurs de signaler des observations de déperissement, de visualiser ces données sur une carte interactive, et de contribuer à la protection de nos écosystèmes forestiers.</p>
+
+            <h3>Notre Projet</h3>
+            <p>Le déperissement des forêts est un problème environnemental majeur, accentué par les changements climatiques, la sécheresse, les maladies et les activités humaines. Notre objectif est de fournir une plateforme centralisée pour collecter des données précises sur ce phénomène à travers toute la Tunisie, afin d'aider les experts, les organisations environnementales et les autorités à mieux comprendre l'ampleur du problème et à mettre en place des actions de conservation efficaces.</p>
+
+            <p>Grâce à votre contribution, nous pouvons construire une base de données robuste qui permettra de :</p>
+            <ul>
+                <li>Identifier les zones les plus touchées par le déperissement.</li>
+                <li>Analyser les espèces d'arbres les plus vulnérables.</li>
+                <li>Suivre l'évolution des symptômes et des causes potentielles.</li>
+                <li>Sensibiliser le public à l'importance de la santé des forêts.</li>
+            </ul>
+
+            <h3>Comment ça marche ?</h3>
+            <p>Si vous êtes un expert forestier, un passionné de l'environnement ou simplement un citoyen soucieux de nos forêts, vous pouvez :</p>
+            <ul>
+                <li>Vous <strong>inscrire</strong> pour créer un compte (si vous n'en avez pas).</li>
+                <li>Vous <strong>connecter</strong> pour accéder à votre tableau de bord.</li>
+                <li><strong>Ajouter une observation</strong> de déperissement en remplissant un formulaire détaillé avec des informations sur l'emplacement (latitude, longitude), l'espèce d'arbre, les symptômes et la date.</li>
+                <li><strong>Consulter toutes les observations</strong> soumises par la communauté.</li>
+                <li>Bientôt, <strong>visualiser toutes les observations sur une carte interactive</strong> pour une meilleure compréhension spatiale du phénomène.</li>
+            </ul>
+
+            <p>Nous vous remercions de votre intérêt et de votre engagement pour la préservation de nos précieuses ressources naturelles en Tunisie.</p>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2023 Mon App SIG. Tous droits réservés.</p>
+        <p>almadhkourihaythem@gmail.com</p>
+    </footer>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeNav();
+            }
+        });
+    </script>
+</body>
+</html>
