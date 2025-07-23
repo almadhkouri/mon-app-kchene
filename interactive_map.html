@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon App SIG - Carte Interactive</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+        .page-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .message.error-message {
+            color: red;
+            background-color: #ffe0e0;
+            border: 1px solid red;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html">Mon App SIG</a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="profile.html">Profil</a></li>
+                <li><a href="add_deperissement.html">Ajouter une Observation</a></li>
+                <li><a href="view_deperissements.html">Consulter Observations</a></li>
+                <li><a href="interactive_map.html">Carte Interactive</a></li>
+                <li class="user-display">
+                    Connecté: <strong>Utilisateur</strong>
+                    <a href="login.html" class="logout-link">(Déconnexion)</a>
+                </li>
+            </ul>
+        </nav>
+        <button class="hamburger" onclick="openNav()">&#9776;</button>
+    </header>
+
+    <div class="sidebar" id="mySidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Accueil</a>
+        <a href="profile.html">Profil</a>
+        <a href="add_deperissement.html">Ajouter une Observation</a>
+        <a href="view_deperissements.html">Consulter Observations</a>
+        <a href="interactive_map.html">Carte Interactive</a>
+        <a href="login.html">Déconnexion</a>
+    </div>
+
+    <div class="main-content">
+        <div class="page-container">
+            <h2>Carte Interactive des Observations de Déperissement et Couche Chêne-Liège</h2>
+
+            <div id="map"></div>
+
+            <script>
+                var initialLat = 34.0;
+                var initialLon = 9.0;
+                var initialZoom = 7;
+
+                var map = L.map('map').setView([initialLat, initialLon], initialZoom);
+
+                var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                });
+
+                var chene_liege_wms = L.tileLayer.wms("http://localhost:8080/geoserver/wms", {
+                    layers: 'monapp:chene_liege',
+                    format: 'image/png',
+                    transparent: true,
+                    version: '1.1.0',
+                    crs: L.CRS.EPSG4326
+                });
+
+                var observationsGeoJSON = {
+                    "type": "FeatureCollection",
+                    "features": [
+                        {
+                            "type": "Feature",
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [8.7801, 36.5012]
+                            },
+                            "properties": {
+                                "id": 1,
+                                "gouvernorat": "Jendouba",
+                                "espece": "Chêne-liège",
+                                "symptomes": "Feuilles jaunies, branches sèches",
+                                "date": "2023-05-15",
+                                "popupContent": "<b>Observation ID:</b> 1<br><b>Gouvernorat:</b> Jendouba<br><b>Espèce:</b> Chêne-liège<br><b>Symptômes:</b> Feuilles jaunies, branches sèches<br><b>Date:</b> 2023-05-15"
+                            }
+                        },
+                        {
+                            "type": "Feature",
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [9.1817, 36.7256]
+                            },
+                            "properties": {
+                                "id": 2,
+                                "gouvernorat": "Béja",
+                                "espece": "Pin d'Alep",
+                                "symptomes": "Décoloration des aiguilles",
+                                "date": "2023-06-20",
+                                "popupContent": "<b>Observation ID:</b> 2<br><b>Gouvernorat:</b> Béja<br><b>Espèce:</b> Pin d'Alep<br><b>Symptômes:</b> Décoloration des aiguilles<br><b>Date:</b> 2023-06-20"
+                            }
+                        }
+                    ]
+                };
+
+                var observationsLayer = L.geoJSON(observationsGeoJSON, {
+                    onEachFeature: function (feature, layer) {
+                        if (feature.properties && feature.properties.popupContent) {
+                            layer.bindPopup(feature.properties.popupContent);
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng, {
+                            radius: 8,
+                            fillColor: "#ff7800",
+                            color: "#000",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        });
+                    }
+                });
+
+                var baseLayers = {
+                    "OpenStreetMap": osmLayer
+                };
+
+                var overlayLayers = {
+                    "Observations de Déperissement": observationsLayer,
+                    "Chêne-Liège (GeoServer)": chene_liege_wms
+                };
+
+                L.control.layers(baseLayers, overlayLayers).addTo(map);
+                osmLayer.addTo(map);
+                observationsLayer.addTo(map);
+            </script>
+
+            <a href="dashboard.html" class="back-link">Retour au Tableau de Bord</a>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2023 Mon App SIG. Tous droits réservés.</p>
+        <p>almadhkourihaythem@gmail.com</p>
+    </footer>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeNav();
+            }
+        });
+    </script>
+</body>
+</html>
