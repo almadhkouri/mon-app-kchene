@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon App SIG - Consulter Observations</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html">Mon App SIG</a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="profile.html">Profil</a></li>
+                <li><a href="add_deperissement.html">Ajouter une Observation</a></li>
+                <li><a href="view_deperissements.html">Consulter Observations</a></li>
+                <li><a href="interactive_map.html">Carte Interactive</a></li>
+                <li class="user-display">
+                    Connecté: <strong>Utilisateur</strong>
+                    <a href="login.html" class="logout-link">(Déconnexion)</a>
+                </li>
+            </ul>
+        </nav>
+        <button class="hamburger" onclick="openNav()">&#9776;</button>
+    </header>
+
+    <div class="sidebar" id="mySidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Accueil</a>
+        <a href="profile.html">Profil</a>
+        <a href="add_deperissement.html">Ajouter une Observation</a>
+        <a href="view_deperissements.html">Consulter Observations</a>
+        <a href="interactive_map.html">Carte Interactive</a>
+        <a href="login.html">Déconnexion</a>
+    </div>
+
+    <div class="main-content">
+        <div class="page-container">
+            <h2>Consulter les Observations de Déperissement</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Gouvernorat</th>
+                        <th>Espèce d'Arbres</th>
+                        <th>Symptômes</th>
+                        <th>Date Observation</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Soumis par</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Jendouba</td>
+                        <td>Chêne-liège</td>
+                        <td>Feuilles jaunies, branches sèches</td>
+                        <td>2023-05-15</td>
+                        <td>36.5012</td>
+                        <td>8.7801</td>
+                        <td>Utilisateur1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Béja</td>
+                        <td>Pin d'Alep</td>
+                        <td>Décoloration des aiguilles</td>
+                        <td>2023-06-20</td>
+                        <td>36.7256</td>
+                        <td>9.1817</td>
+                        <td>Utilisateur2</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="dashboard.html" class="back-link">Retour au Tableau de Bord</a>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2023 Mon App SIG. Tous droits réservés.</p>
+        <p>almadhkourihaythem@gmail.com</p>
+    </footer>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeNav();
+            }
+        });
+    </script>
+</body>
+</html>
