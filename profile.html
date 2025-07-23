@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon App SIG - Mon Profil</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html">Mon App SIG</a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="profile.html">Profil</a></li>
+                <li><a href="add_deperissement.html">Ajouter une Observation</a></li>
+                <li><a href="view_deperissements.html">Consulter Observations</a></li>
+                <li><a href="interactive_map.html">Carte Interactive</a></li>
+                <li class="user-display">
+                    Connecté: <strong>Utilisateur</strong>
+                    <a href="login.html" class="logout-link">(Déconnexion)</a>
+                </li>
+            </ul>
+        </nav>
+        <button class="hamburger" onclick="openNav()">&#9776;</button>
+    </header>
+
+    <div class="sidebar" id="mySidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Accueil</a>
+        <a href="profile.html">Profil</a>
+        <a href="add_deperissement.html">Ajouter une Observation</a>
+        <a href="view_deperissements.html">Consulter Observations</a>
+        <a href="interactive_map.html">Carte Interactive</a>
+        <a href="login.html">Déconnexion</a>
+    </div>
+
+    <div class="main-content">
+        <div class="page-container">
+            <h2>Mon Profil</h2>
+
+            <form action="profile.html" method="POST
