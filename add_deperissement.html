@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon App SIG - Ajouter Observation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html">Mon App SIG</a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="profile.html">Profil</a></li>
+                <li><a href="add_deperissement.html">Ajouter une Observation</a></li>
+                <li><a href="view_deperissements.html">Consulter Observations</a></li>
+                <li><a href="interactive_map.html">Carte Interactive</a></li>
+                <li class="user-display">
+                    Connecté: <strong>Utilisateur</strong>
+                    <a href="login.html" class="logout-link">(Déconnexion)</a>
+                </li>
+            </ul>
+        </nav>
+        <button class="hamburger" onclick="openNav()">&#9776;</button>
+    </header>
+
+    <div class="sidebar" id="mySidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Accueil</a>
+        <a href="profile.html">Profil</a>
+        <a href="add_deperissement.html">Ajouter une Observation</a>
+        <a href="view_deperissements.html">Consulter Observations</a>
+        <a href="interactive_map.html">Carte Interactive</a>
+        <a href="login.html">Déconnexion</a>
+    </div>
+
+    <div class="main-content">
+        <div class="page-container">
+            <h2>Ajouter une Nouvelle Observation de Déperissement</h2>
+
+            <form action="add_deperissement.html" method="POST">
+                <div class="form-group">
+                    <label for="gouvernorat">Gouvernorat:</label>
+                    <input type="text" id="gouvernorat" name="gouvernorat" required>
+                </div>
+                <div class="form-group">
+                    <label for="espece_arbres">Espèce d'arbres:</label>
+                    <input type="text" id="espece_arbres" name="espece_arbres" required>
+                </div>
+                <div class="form-group">
+                    <label for="symptomes_observes">Symptômes observés:</label>
+                    <textarea id="symptomes_observes" name="symptomes_observes" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="date_observation">Date d'observation:</label>
+                    <input type="date" id="date_observation" name="date_observation" required>
+                </div>
+                <div class="form-group">
+                    <label for="latitude">Latitude:</label>
+                    <input type="number" step="any" id="latitude" name="latitude" required>
+                </div>
+                <div class="form-group">
+                    <label for="longitude">Longitude:</label>
+                    <input type="number" step="any" id="longitude" name="longitude" required>
+                </div>
+                <button type="submit" class="btn-submit">Ajouter Observation</button>
+            </form>
+
+            <a href="dashboard.html" class="back-link">Retour au Tableau de Bord</a>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2023 Mon App SIG. Tous droits réservés.</p>
+        <p>almadhkourihaythem@gmail.com</p>
+    </footer>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeNav();
+            }
+        });
+    </script>
+</body>
+</html>
